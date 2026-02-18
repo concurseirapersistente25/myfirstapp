@@ -48,3 +48,26 @@ Exemplo de payload:
   "status": "encerrado"
 }
 ```
+
+
+## Solução de problemas
+
+### Erro `ENOENT: no such file or directory, uv_cwd` ao rodar `npm run dev:frontend`
+Esse erro acontece quando o terminal atual está em um diretório que não existe mais (por exemplo, pasta removida/renomeada depois do `git clone`) ou quando o comando é executado fora da pasta do projeto.
+
+Passos para corrigir:
+```bash
+cd /workspace/myfirstapp
+pwd
+ls
+npm run dev:frontend
+```
+
+Se ainda falhar, feche o terminal e abra outro dentro da pasta do projeto, depois execute:
+```bash
+npm run install:all
+npm run dev:backend
+npm run dev:frontend
+```
+
+> Observação: no ambiente deste projeto, pode ocorrer `403` no `npm install` por política de rede do registry. Nesse caso, é limitação de ambiente e não do código.
