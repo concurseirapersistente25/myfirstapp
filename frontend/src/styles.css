@@ -1,0 +1,20 @@
+:root {
+  font-family: Inter, system-ui, Arial, sans-serif;
+  color: #0f172a;
+  background: #f8fafc;
+}
+
+body { margin: 0; }
+.container { max-width: 1024px; margin: 0 auto; padding: 20px; }
+.card { background: white; border-radius: 10px; padding: 16px; margin-bottom: 16px; box-shadow: 0 2px 8px rgba(0,0,0,.06); }
+.participants-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(140px,1fr)); gap: 8px; }
+.chip { background: #e2e8f0; border-radius: 999px; padding: 8px 10px; font-size: 12px; text-align:center; }
+.match-list { display: grid; gap: 8px; }
+.match-card { border: 1px solid #e2e8f0; border-radius: 8px; padding: 10px; }
+.admin-form { display: grid; gap: 10px; }
+label { display: grid; gap: 4px; font-size: 14px; }
+input, select, button { border: 1px solid #cbd5e1; border-radius: 8px; padding: 8px; font-size: 14px; }
+button { background: #0ea5e9; color: white; border: none; cursor: pointer; }
+.scores { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.message { margin: 4px 0 0; font-weight: 600; }
+
