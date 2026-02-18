@@ -3,7 +3,14 @@ import { useEffect, useMemo, useState } from 'react';
 const API_BASE = import.meta.env.VITE_API_URL || 'http://localhost:4000/api';
 
 export default function App() {
-  const [data, setData] = useState({ participants: [], matches: [], slotBreakdown: {} });
+  const [data, setData] = useState({
+    participants: [],
+    matches: [],
+    confirmedTeamsByConfederation: {},
+    pendingPlayoffSlots: [],
+    confirmedCount: 0,
+    pendingCount: 0
+  });
   const [selectedMatchId, setSelectedMatchId] = useState('');
   const [adminKey, setAdminKey] = useState('admin-2026');
   const [message, setMessage] = useState('');
@@ -85,19 +92,34 @@ export default function App() {
       </header>
 
       <section className="card">
-        <h2>Distribuição oficial de vagas</h2>
+        <h2>Status de classificação</h2>
+        <p><b>{data.confirmedCount}</b> seleções confirmadas e <b>{data.pendingCount}</b> vagas pendentes.</p>
         <div className="participants-grid">
-          {Object.entries(data.slotBreakdown || {}).map(([confederation, slots]) => (
-            <span key={confederation} className="chip">{confederation}: {slots}</span>
+          {Object.entries(data.confirmedTeamsByConfederation || {}).map(([confederation, teams]) => (
+            <span key={confederation} className="chip">{confederation}: {teams.length} confirmadas</span>
           ))}
         </div>
       </section>
 
       <section className="card">
-        <h2>Seleções participantes ({data.participants.length})</h2>
+        <h2>Seleções confirmadas por continente</h2>
+        {Object.entries(data.confirmedTeamsByConfederation || {}).map(([confederation, teams]) => (
+          <div key={confederation}>
+            <h3>{confederation}</h3>
+            <div className="participants-grid">
+              {teams.map((team) => (
+                <span key={`${confederation}-${team}`} className="chip">{team}</span>
+              ))}
+            </div>
+          </div>
+        ))}
+      </section>
+
+      <section className="card">
+        <h2>Vagas pendentes (playoffs de março)</h2>
         <div className="participants-grid">
-          {data.participants.map((team) => (
-            <span key={team} className="chip">{team}</span>
+          {(data.pendingPlayoffSlots || []).map((slot) => (
+            <span key={slot} className="chip">{slot}</span>
           ))}
         </div>
       </section>
@@ -176,4 +198,3 @@ export default function App() {
     </div>
   );
 }
-

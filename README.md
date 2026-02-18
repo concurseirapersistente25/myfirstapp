@@ -3,8 +3,9 @@
 Projeto fullstack pronto para uso em web e base para empacotar como app híbrido (Android/iOS via Capacitor).
 
 ## Funcionalidades
-- Lista com 48 seleções/vagas da Copa 2026.
-- Distribuição oficial de vagas por confederação (46 diretas + 2 repescagem intercontinental).
+- Cenário atualizado para **fev/2026**: 48 vagas totais, com 42 seleções já confirmadas.
+- Exibição por continente das seleções confirmadas.
+- Exibição das 6 vagas pendentes via playoffs de março/2026 (UEFA e repescagem mundial).
 - Jogos da fase de grupos organizados por 3 rodadas (12 grupos, total de 72 partidas).
 - Backend com endpoint admin para atualizar resultados, datas e estádio.
 
@@ -34,7 +35,7 @@ ADMIN_KEY=sua-chave npm --prefix backend run dev
 ```
 
 ## Endpoints
-- `GET /api/world-cup` - retorna participantes, vagas e jogos.
+- `GET /api/world-cup` - retorna participantes, seleções confirmadas por confederação, vagas pendentes e jogos.
 - `PUT /api/world-cup/matches/:id` - atualiza jogo (requer `x-admin-key`).
 
 Exemplo de payload:
@@ -47,4 +48,3 @@ Exemplo de payload:
   "status": "encerrado"
 }
 ```
-
